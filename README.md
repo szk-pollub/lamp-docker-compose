@@ -1,4 +1,4 @@
-#LAMP in docker-compose
+# LAMP in docker-compose
 
 To repozytorium zawiera plik `docker-compose.yml` w którym skonfigurowano usługi LAMP (Linux, Apache, MySQL, PHP).
 
