@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+    apache:
+        build: ./images/apache
+        networks:
+            frontend:
+            backend:
+                ipv4_address: 192.168.2.4
+        ports:
+            - 6666:80
+    php:
+        build: ./images/php
+        networks:
+            backend:
+                ipv4_address: 192.168.2.5
+        expose:
+            - 9000
+        volumes:
+            - ./app:/srv/app
+    db:
+        build: ./images/mysql
+        command: --init-file /data/application/init.sql
+        environment:
+            MYSQL_ROOT_PASSWORD: secret
+        networks:
+            backend:
+                ipv4_address: 192.168.2.6
+        volumes:
+            - spr4_db:/var/lib/mysql
+
+volumes:
+    spr4_db:
+
+networks:
+    frontend:
+    backend:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                -   subnet: 192.168.2.0/24
+
