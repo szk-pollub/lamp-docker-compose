@@ -5,6 +5,6 @@ $pdo->prepare("INSERT INTO visitors (visit_date) VALUES (?)")->execute([(new Dat
 
 $query = $pdo->prepare('SELECT COUNT(*) FROM visitors');
 $query->execute();
-echo 'No. visitors: ' . $query->fetchColumn();
+echo 'Liczba wyświetleń: ' . $query->fetchColumn();
 
 return '123';
